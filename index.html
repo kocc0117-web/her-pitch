@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101c2c">
+<title>HER PITCH — 여자축구 인생 시뮬레이션</title>
+<style>
+:root{--bg:#0b1422;--panel:#142238;--panel2:#1b2d46;--line:#30445f;--txt:#f2f6fb;--muted:#a8b8cb;--lime:#c8f169;--blue:#83c7ff;--red:#ff8e8e}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#203c58 0,#0b1422 42%);color:var(--txt);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;min-height:100vh}
+header{padding:22px max(20px,calc((100% - 1100px)/2));border-bottom:1px solid #ffffff18;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;letter-spacing:2px}.logo span{color:var(--lime)}.tag{font-size:12px;color:var(--muted)}
+main{max-width:1100px;margin:auto;padding:28px 20px 60px}.hero{padding:28px 0 24px}.eyebrow{color:var(--lime);font-size:12px;font-weight:800;letter-spacing:2px}.hero h1{font-size:clamp(30px,6vw,54px);line-height:1.05;margin:12px 0}.hero p{color:var(--muted);max-width:650px;line-height:1.7}
+.layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{background:linear-gradient(150deg,#192c44,#101d30);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 18px 50px #0003}.card h2{font-size:18px;margin:0 0 16px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-size:13px;color:var(--muted)}input,select{width:100%;padding:12px 13px;background:#0c1828;border:1px solid var(--line);border-radius:10px;color:var(--txt);font:inherit}input:focus,select:focus{outline:2px solid var(--blue);border-color:transparent}.choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}.choice{padding:14px;border:1px solid var(--line);background:#0d1a2b;border-radius:12px;cursor:pointer;text-align:left;color:var(--txt)}.choice.active{border-color:var(--lime);background:#293b2c}.choice strong{display:block;margin-bottom:5px}.choice small{color:var(--muted);line-height:1.5}
+button{border:0;border-radius:11px;background:var(--lime);color:#142014;font-weight:900;padding:14px 18px;font-size:15px;cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}.primary{width:100%;margin-top:18px}.secondary{background:#263b56;color:var(--txt)}.status{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:10px}.bar{height:8px;background:#26364a;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--lime);width:0}
+.profile{display:flex;align-items:center;gap:15px;margin-bottom:18px}.avatar{width:64px;height:64px;border-radius:16px;background:linear-gradient(140deg,#d7f48a,#4c8b83);display:grid;place-items:center;color:#10221e;font-size:28px;font-weight:900}.profile h3{margin:0 0 4px}.profile p{margin:0;color:var(--muted);font-size:13px}.stat{margin:13px 0}.stathead{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}.stathead span:last-child{color:var(--lime);font-weight:800}.note{border-left:3px solid var(--blue);padding:10px 12px;background:#172c42;color:#c8d6e5;font-size:13px;line-height:1.6;border-radius:0 8px 8px 0}
+.hidden{display:none!important}.story{font-size:15px;line-height:1.8;color:#d8e3ef}.story strong{color:var(--lime)}.optionlist{display:grid;gap:10px;margin-top:16px}.option{padding:15px;text-align:left;background:#102138;color:var(--txt);border:1px solid var(--line);border-radius:12px;cursor:pointer}.option:hover{border-color:var(--blue)}.option b{display:block;margin-bottom:5px}.option small{color:var(--muted)}
+footer{max-width:1100px;margin:auto;padding:0 20px 30px;color:#8093aa;font-size:12px;line-height:1.6}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr 1fr}.card{padding:17px}header{padding:18px 20px}}
+@media(max-width:430px){.formgrid,.choices{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<header><div class="logo">HER <span>PITCH</span></div><div class="tag">WOMEN'S FOOTBALL CAREER SIMULATOR · BETA 0.1</div></header>
+<main>
+<section class="hero">
+<div class="eyebrow">YOUR CAREER. YOUR DECISIONS.</div>
+<h1>그라운드 위에서,<br><span style="color:var(--lime)">너의 이야기가 시작된다.</span></h1>
+<p>초·중등 유스부터 대학·프로, 해외 리그와 국가대표까지. 선택과 경기 결과가 선수의 커리어를 바꾸는 여자축구 인생 시뮬레이션입니다.</p>
+</section>
+<div id="setup" class="layout">
+<section class="card">
+<h2>01 / 신인 선수 만들기</h2>
+<div class="formgrid">
+<div class="field full"><label for="name">선수 이름</label><input id="name" maxlength="20" placeholder="예: 허서연"></div>
+<div class="field"><label for="age">나이</label><input id="age" type="number" min="12" max="22" value="16"></div>
+<div class="field"><label for="height">키 (cm)</label><input id="height" type="number" min="145" max="195" value="165"></div>
+<div class="field"><label for="foot">주발</label><select id="foot"><option>오른발</option><option>왼발</option><option>양발</option></select></div>
+<div class="field"><label for="country">국적</label><select id="country"><option>대한민국</option><option>필리핀</option><option>일본</option><option>미국</option><option>기타</option></select></div>
+<div class="field full"><label>주 포지션</label><div class="choices" id="positions">
+<button type="button" class="choice active" data-pos="FW"><strong>FW · 공격수</strong><small>득점, 침투, 결정력</small></button>
+<button type="button" class="choice" data-pos="MF"><strong>MF · 미드필더</strong><small>패스, 시야, 경기 조율</small></button>
+<button type="button" class="choice" data-pos="DF"><strong>DF · 수비수</strong><small>대인 방어, 태클, 빌드업</small></button>
+<button type="button" class="choice" data-pos="GK"><strong>GK · 골키퍼</strong><small>반사신경, 위치 선정, 캐칭</small></button>
+</div></div>
+</div>
+<h2 style="margin-top:22px">02 / 성장 경로 선택</h2>
+<div class="choices" id="routes">
+<button type="button" class="choice active" data-route="high"><strong>고등학교 축구부</strong><small>전국 고교리그와 왕중왕전. 팀워크와 기본기부터 다진다.</small></button>
+<button type="button" class="choice" data-route="academy"><strong>클럽 유스 아카데미</strong><small>연령별 유스리그와 국제 유스대회에 도전한다.</small></button>
+</div>
+<button class="primary" id="start">선수 등록하고 커리어 시작하기 →</button>
+</section>
+<aside class="card">
+<h2>선수 프로필 미리보기</h2>
+<div class="profile"><div class="avatar">⚽</div><div><h3 id="previewName">신인 선수</h3><p id="previewMeta">16세 · 165cm · FW</p></div></div>
+<div class="note">초기 능력치는 포지션과 선택 경로에 따라 배분됩니다. 훈련, 출전 시간, 부상 관리, 경기 퍼포먼스가 장기 성장에 영향을 줍니다.</div>
+<div id="previewStats"></div>
+</aside>
+</div>
+<section id="career" class="hidden">
+<div class="layout">
+<div class="card">
+<div class="status"><span id="phase">CAREER · YEAR 1</span><span id="season">시즌 준비</span></div>
+<div class="bar"><i id="progress"></i></div>
+<h2 id="storyTitle" style="margin-top:20px">첫 훈련일</h2>
+<div class="story" id="story"></div>
+<div class="optionlist" id="options"></div>
+</div>
+<aside class="card">
+<h2>선수 상태</h2><div class="profile"><div class="avatar">⚽</div><div><h3 id="careerName"></h3><p id="careerMeta"></p></div></div>
+<div id="careerStats"></div>
+<div class="note" id="relationship">감독과 동료들의 평가는 아직 형성되지 않았습니다.</div>
+<button class="secondary primary" id="reset">새 커리어 시작</button>
+</aside>
+</div>
+</section>
+</main>
+<footer>본 게임은 현실의 여자축구 구조를 참고한 창작 시뮬레이션입니다. 실제 구단·선수·대회와의 제휴 또는 공식 라이선스를 의미하지 않습니다. 베타 버전은 현재 브라우저에 진행 상황을 저장합니다.</footer>
+<script>
+const $=id=>document.getElementById(id);
+let position='FW',route='high',player=null,state=0;
+const baseStats={FW:{attack:66,defense:35,keeping:8,stamina:57,physical:49,speed:68,technique:61},MF:{attack:55,defense:53,keeping:8,stamina:65,physical:48,speed:59,technique:68},DF:{attack:35,defense:68,keeping:8,stamina:63,physical:64,speed:54,technique:55},GK:{attack:8,defense:48,keeping:68,stamina:55,physical:63,speed:48,technique:57}};
+const statNames={attack:'공격력',defense:'수비력',keeping:'골키핑',stamina:'체력',physical:'피지컬',speed:'속력',technique:'기술'};
+function selectGroup(id,key){$(id).querySelectorAll('.choice').forEach(b=>b.addEventListener('click',()=>{ $(id).querySelectorAll('.choice').forEach(x=>x.classList.remove('active'));b.classList.add('active');if(key==='pos')position=b.dataset.pos;else route=b.dataset.route;updatePreview();}));}
+selectGroup('positions','pos');selectGroup('routes','route');
+['name','age','height'].forEach(id=>$(id).addEventListener('input',updatePreview));
+function updatePreview(){let n=$('name').value.trim()||'신인 선수';$('previewName').textContent=n;$('previewMeta').textContent=`${$('age').value||16}세 · ${$('height').value||165}cm · ${position}`;renderStats('previewStats',baseStats[position]);}
+function renderStats(id,stats){$(id).innerHTML=Object.entries(stats).map(([k,v])=>`<div class="stat"><div class="stathead"><span>${statNames[k]}</span><span>${v}</span></div><div class="bar"><i style="width:${v}%"></i></div></div>`).join('');}
+updatePreview();
+$('start').onclick=()=>{
+let name=$('name').value.trim()||'신인 선수',age=Number($('age').value),height=Number($('height').value);
+if(age<12||age>22||height<145||height>195){alert('나이(12~22세)와 키(145~195cm)를 확인해 주세요.');return;}
+player={name,age,height,foot:$('foot').value,country:$('country').value,position,route,stats:{...baseStats[position]},morale:60,coach:50,team:50,injury:0,year:1,record:{apps:0,goals:0,assists:0}};
+if(route==='academy'){player.stats.technique+=3;player.stats.speed+=2;}else{player.stats.stamina+=3;player.stats.physical+=2;}
+$('setup').classList.add('hidden');$('career').classList.remove('hidden');renderCareer();showStage(0);
+};
+function renderCareer(){$('careerName').textContent=player.name;$('careerMeta').textContent=`${player.age}세 · ${player.height}cm · ${player.position} · ${player.foot}`;renderStats('careerStats',player.stats);$('relationship').textContent=`감독 신뢰도 ${player.coach} · 팀 동료 유대감 ${player.team} · 사기 ${player.morale}`;}
+const stages=[
+{phase:'CAREER · YEAR 1',season:'프리시즌',title:'첫 훈련일 — 감독의 첫인상',story:'새 유니폼을 받은 첫날. 감독은 선수들을 모아 말합니다. <strong>“재능만으로 프로가 될 수는 없다. 매일의 태도가 기회를 만든다.”</strong> 오늘은 첫 훈련에서 어떤 모습을 보여줄지 결정해야 합니다.',opts:[
+['기본기와 패스 훈련에 집중','안정적인 선택. 기술과 감독 신뢰도가 오른다.',()=>{gain('technique',3);player.coach+=5;player.morale+=2;}],
+['개인 피지컬·스프린트 훈련','강도 높은 선택. 속력과 체력이 오르지만 피로가 쌓인다.',()=>{gain('speed',3);gain('stamina',2);player.injury+=4;player.morale-=1;}],
+['동료들과 먼저 대화하며 호흡 맞추기','팀 적응을 우선한다. 동료 유대감과 사기가 오른다.',()=>{player.team+=8;player.morale+=5;}]
+]},
+{phase:'CAREER · YEAR 1',season:'주전 경쟁',title:'첫 연습경기 — 출전 기회',story:'연습경기 전날, 코치가 포지션 경쟁자와 함께 출전 명단을 발표합니다. 당신은 선발과 교체 사이에서 경쟁 중입니다. 어떤 방식으로 준비할까요?',opts:[
+['전술 분석과 영상 복기','전술 이해와 감독 신뢰도를 높인다.',()=>{gain('technique',2);player.coach+=7;}],
+['슈팅·개인기 반복 훈련','공격 포인트를 노린다. 기술 또는 공격력이 오른다.',()=>{gain(player.position==='FW'?'attack':'technique',3);player.injury+=2;}],
+['컨디션 회복과 수면 우선','당장의 능력 상승은 적지만 부상 위험을 낮춘다.',()=>{player.injury=Math.max(0,player.injury-8);player.morale+=3;}]
+]},
+{phase:'CAREER · YEAR 1',season:'첫 공식 경기',title:'리그 데뷔전',story:'전국(또는 권역) 유스리그 첫 경기입니다. 관중석에는 가족과 스카우트가 보입니다. 팀은 강팀을 상대합니다. 경기 중 당신의 플레이 선택이 결과와 기록에 반영됩니다.',opts:[
+['안전하고 정확한 플레이','실수를 줄이고 팀 전술을 지킨다.',()=>match('safe')],
+['적극적으로 승부수를 건다','공격적인 플레이. 좋은 결과도, 실수도 가능하다.',()=>match('bold')],
+['팀 플레이와 수비 가담에 집중','팀 기여도와 감독 평가를 노린다.',()=>match('team')]
+]},
+{phase:'CAREER · YEAR 1',season:'시즌 결산',title:'첫 시즌 평가',story:'첫 시즌이 끝났습니다. 지도자는 출전 기회, 훈련 태도, 성장 폭을 종합해 다음 시즌 계획을 제시합니다. 다음 단계에서는 중등·고등 유스 무대, 대학 진학, 프로 스카우트로 이어지는 커리어가 열립니다.',opts:[
+['현재 팀에서 주전 도전을 이어간다','출전 경험과 팀 내 입지를 우선한다.',()=>{player.coach+=5;player.morale+=3;}],
+['상위 학교·아카데미 테스트에 지원한다','경쟁 수준을 높이고 스카우트 노출을 노린다.',()=>{gain('technique',2);player.morale-=2;}],
+['부족한 능력 보완을 위한 개인 훈련','장기 성장을 우선한다.',()=>{gain('stamina',2);gain('physical',2);}]
+]}
+];
+function gain(k,n){player.stats[k]=Math.min(99,player.stats[k]+n);}
+function match(style){let s=player.stats,skill=style==='bold'?(s.attack+s.technique+s.speed)/3:style==='team'?(s.defense+s.technique+s.stamina)/3:(s.technique+s.stamina+s.defense)/3;let chance=Math.max(10,Math.min(90,Math.round(skill-35+(player.coach-50)*.25+(Math.random()*24-12))));let success=Math.random()*100<chance;player.record.apps++;if(success){if(style==='bold'&&player.position!=='GK'){player.record.goals++;gain('attack',1);player.morale+=6;}else{player.record.assists++;gain('technique',1);player.team+=4;player.morale+=3;}}else{player.morale-=4;player.coach-=2;}if(Math.random()*100<player.injury){player.injury=Math.min(40,player.injury+8);player.morale-=3;}alert(success?'경기 결과: 좋은 활약! 코치의 평가가 올랐습니다.':'경기 결과: 기대만큼 풀리지 않았습니다. 다음 훈련에서 보완해야 합니다.');}
+function showStage(i){state=i;let st=stages[i];$('phase').textContent=st.phase;$('season').textContent=st.season;$('progress').style.width=((i+1)/stages.length*100)+'%';$('storyTitle').textContent=st.title;$('story').innerHTML=st.story;$('options').innerHTML='';st.opts.forEach((o,j)=>{let b=document.createElement('button');b.className='option';b.innerHTML=`<b>${j+1}. ${o[0]}</b><small>${o[1]}</small>`;b.onclick=()=>{o[2]();if(i===stages.length-1){player.year++;player.age++;player.record={apps:0,goals:0,assists:0};alert(`시즌 종료! 누적 기록: ${player.record.apps}경기 · ${player.record.goals}골 · ${player.record.assists}도움. 다음 시즌으로 넘어갑니다.`);showStage(0);}else showStage(i+1);renderCareer();};$('options').appendChild(b);});}
+$('reset').onclick=()=>{if(confirm('현재 커리어를 종료하고 새 선수로 시작할까요?'))location.reload();};
+</script>
+</body></html>
